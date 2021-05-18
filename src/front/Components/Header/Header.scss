@@ -1,0 +1,23 @@
+.boardTypes {
+  display: flex;
+}
+
+.typeBoards {
+  display: inline-flex;
+}
+
+.typeLabel {
+  margin-right: 3px;
+
+  &::after {
+    content: ':';
+  }
+}
+
+.board:not(:last-child) {
+  margin-right: 5px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
