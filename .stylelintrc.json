@@ -1,4 +1,7 @@
 {
   "extends": "stylelint-config-sass-guidelines",
-  "ignoreFiles": ["./build/*"]
+  "ignoreFiles": ["./build/*"],
+  "rules": {
+    "selector-class-pattern": "[a-zA-Z]+"
+  }
 }

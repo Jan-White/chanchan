@@ -3,13 +3,12 @@
   "env": {
     "es2021": true
   },
-  "globals": {
-    "IN_DEV": "readonly",
-    "IN_PROD": "readonly",
-    "window": "readonly",
-    "document": "readonly",
-    "console": "readonly",
-    "JSX": "readonly"
+  "parserOptions": {
+    "ecmaFeatures": {
+      "impliedStrict": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
   },
   "extends": [
     "eslint:recommended",
@@ -18,40 +17,63 @@
     "plugin:promise/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true,
-      "impliedStrict": true
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module",
-    "tsconfigRootDir": "./src/front",
-    "project": ["./tsconfig.json"]
-  },
   "plugins": [
-    "react",
-    "react-hooks",
     "promise",
     "@typescript-eslint"
   ],
   "rules": {
     "no-undef": "error",
+    "max-len": ["error", {"tabWidth": 2}],
+    "sort-keys": ["error"],
+    "no-unused-expressions": "off",
     "@typescript-eslint/indent": ["error", 2],
     "@typescript-eslint/quotes": ["error", "single"],
     "@typescript-eslint/semi": ["error"],
-    "no-unused-expressions": "off",
-    "@typescript-eslint/no-unused-expressions": ["error"]
+    "@typescript-eslint/no-unused-expressions": ["error"],
+    "@typescript-eslint/sort-type-union-intersection-members": ["error"],
+    "@typescript-eslint/array-type": ["error", {"default": "generic"}]
   },
   "ignorePatterns": "webpack.config.ts",
   "overrides": [
     {
       "files": ["./src/front/**"],
+      "globals": {
+        "IN_DEV": "readonly",
+        "IN_PROD": "readonly",
+        "window": "readonly",
+        "document": "readonly",
+        "console": "readonly",
+        "JSX": "readonly"
+      },
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "tsconfigRootDir": "./src/front",
+        "project": ["./tsconfig.json"]
+      },
       "extends": [
         "plugin:react/recommended",
         "plugin:react-hooks/recommended"
       ],
+      "plugins": [
+        "react",
+        "react-hooks"
+      ],
       "rules": {
         "react/react-in-jsx-scope": "off"
+      },
+      "settings": {
+        "react": {
+          "version": "17.0.1"
+        }
+      }
+    },
+    {
+      "files": ["./src/server/**"],
+      "parserOptions": {
+        "tsconfigRootDir": "./src/server",
+        "project": ["./tsconfig.json"]
       }
     }
   ]
