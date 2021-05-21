@@ -117,7 +117,7 @@ const config: ConfigurationFactory = (_env, {mode}) => {
               loader: 'sass-loader',
               options: {
                 sassOptions: {
-                  includePaths: [resolve(front, 'Scss')]
+                  includePaths: [resolve(front, 'Styles')]
                 },
               }
             }

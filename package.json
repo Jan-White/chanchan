@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack -c webpack.config.ts --mode development --progress",
     "buildProd": "webpack -c webpack.config.ts --mode production --progress",
-    "start": "webpack serve -c webpack.config.ts --mode development --progress"
+    "start": "webpack serve -c webpack.config.ts --mode development --progress",
+    "lintStyles":
+    "stylelint \"src/front/**/*.{css,scss,sass}\" --fix --cache"
   },
   "repository": {
     "type": "git",
