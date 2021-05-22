@@ -1,3 +1,4 @@
+/* eslint-env node */
 import {resolve}  from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -21,7 +22,8 @@ const config: ConfigurationFactory = (_env, {mode}) => {
     IN_PROD = !IN_DEV;
 
   const config: webpack.Configuration = {
-    // target is specified to force HMR to work since there's a bug in webpack 5 that disables HMR on target 'browserslist'
+    // target is specified to force HMR to work since there's a bug in webpack
+    // 5 that disables HMR on target 'browserslist'
     target: IN_DEV ? 'web' : 'browserslist',
     mode,
     entry: {
@@ -105,7 +107,7 @@ const config: ConfigurationFactory = (_env, {mode}) => {
                 }
               }
             },
-            {
+            IN_PROD && {
               loader: 'postcss-loader',
               options: {
                 postcssOptions: {
@@ -120,8 +122,8 @@ const config: ConfigurationFactory = (_env, {mode}) => {
                   includePaths: [resolve(front, 'Styles')]
                 },
               }
-            }
-          ],
+            },
+          ].filter(Boolean),
         },
         {
           test: /\.pug$/,
@@ -201,6 +203,6 @@ interface CliConfigOptions {
 }
 
 type ConfigurationFactory = ((
-  env: string | Record<string, boolean | number | string> | undefined,
+  env: Record<string, boolean | number | string> | string | undefined,
   args: CliConfigOptions,
 ) => webpack.Configuration);
