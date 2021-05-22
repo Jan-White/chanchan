@@ -163,10 +163,12 @@ const config: ConfigurationFactory = (_env, {mode}) => {
         filename: 'css/[name].css'
       }),
       new StylelintPlugin({
+        cache: true,
         context: front,
         fix: true
       }),
       new ESLintPlugin({
+        cache: true,
         extensions: ['ts', 'tsx', 'js'],
         fix: true
       }),
